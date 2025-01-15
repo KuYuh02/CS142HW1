@@ -4,7 +4,7 @@
 
 extern "C" void fastsqrt(const float* in, float* out, unsigned count) 
 {
-    while(unsigned i = 0; i < count; i++)
+    for(unsigned i = 0; i < count; i++)
     {
         float x = in[i]
         float guess = 2.0f
