@@ -22,9 +22,3 @@ extern "C" void fastsqrt(const float* in, float* out, unsigned count) {
         out[i] = guess;
     }
 }
-
-
-int main() 
-{
-    return 0;
-}
