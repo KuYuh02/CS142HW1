@@ -4,10 +4,10 @@
 
 extern "C" void fastsqrt(const float* in, float* out, unsigned count) 
 {
-    while(int i = 0; i < count; i++)
+    while(unsigned i = 0; i < count; i++)
     {
-        float x = in[0]
-        float n = 2.0f
+        float x = in[i]
+        float guess = 2.0f
         const float tolerance = 1e-5f * x;
 
         for (unsigned interations = 0; iterations < 15; iterations++)
