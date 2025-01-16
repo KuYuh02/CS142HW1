@@ -1,26 +1,34 @@
-#include <bits/stdc++.h>
+#include <cstdint>
+#include <cmath>
+
+inline float initial_guess(float x) 
+{
+    union 
+    {
+        float y;
+        uint32_t i;
+    } 
+    u = {x};
+
+    // Approximate sqrt by manipulating the exponent
+    u.i = (u.i >> 1) + 0x1FC00000;
+    return u.y;
+}
 
 extern "C" void fastsqrt(const float* in, float* out, unsigned count) 
 {
-    for(unsigned i = 0; i < count; i++)
+    //Initialize variables
+    for (unsigned i = 0; i < count; i++) 
     {
-        float x = in[i];
-        float guess = x;
-        float root;
-        const float tolerance = 1e-4f;
-        while(1)
+        float a = in[i];
+        float b = initial_guess(a);
+
+        // Perform Newton's Method'
+        for (int j = 0; j < 4; j++) 
         {
-           root = 0.5f * (guess + x / guess);
-
-            // Check for closeness
-            if (fabs(root - guess) < tolerance) {
-                break;
-            }
-
-            // Update guess
-            guess = root;
+            b = 0.5f * (b + a / b);
         }
 
-        out[i] = root;
+        out[i] = b;
     }
 }
